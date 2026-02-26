@@ -34,7 +34,6 @@ export default function Navbar() {
 
   const managerLinks = [
     { to: '/manager', label: 'Dashboard' },
-    { to: '/manager/create-shift', label: 'Create Shift' },
     { to: '/manager/all-shifts', label: 'All Shifts' },
     { to: '/manager/pending-requests', label: 'Pending Requests' },
     { to: '/manager/assignments', label: 'Assignments' },

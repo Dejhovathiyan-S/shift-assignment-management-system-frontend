@@ -19,10 +19,35 @@ export default function ForgotPassword() {
       toast.error('Please fill in all fields');
       return;
     }
-    if (newPassword.length <= 8) {
-      toast.error('Password must be at least 9 characters');
+    if (newPassword.length < 5) {
+      toast.error('Password must be at least 5 characters');
       return;
     }
+    
+    // Check for uppercase letter
+    if (!/[A-Z]/.test(newPassword)) {
+      toast.error('Password must have at least one uppercase letter');
+      return;
+    }
+    
+    // Check for lowercase letter
+    if (!/[a-z]/.test(newPassword)) {
+      toast.error('Password must have at least one lowercase letter');
+      return;
+    }
+    
+    // Check for number
+    if (!/[0-9]/.test(newPassword)) {
+      toast.error('Password must have at least one number');
+      return;
+    }
+    
+    // Check for special character
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(newPassword)) {
+      toast.error('Password must have at least one special character');
+      return;
+    }
+    
     if (newPassword !== confirmPassword) {
       toast.error('Passwords do not match');
       return;
@@ -81,7 +106,7 @@ export default function ForgotPassword() {
                   type={showNewPassword ? 'text' : 'password'}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="Minimum 9 characters"
+                  placeholder="Minimum 5 characters"
                   className="input-field pr-12"
                   required
                 />

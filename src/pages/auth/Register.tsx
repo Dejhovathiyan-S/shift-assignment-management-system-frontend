@@ -22,10 +22,35 @@ export default function Register() {
       toast.error('Please fill in all fields');
       return;
     }
-    if (password.length !== 5) {
-      toast.error('Password must be exactly 5 characters');
+    if (password.length < 5) {
+      toast.error('Password must be at least 5 characters');
       return;
     }
+    
+    // Check for uppercase letter
+    if (!/[A-Z]/.test(password)) {
+      toast.error('Password must have at least one uppercase letter');
+      return;
+    }
+    
+    // Check for lowercase letter
+    if (!/[a-z]/.test(password)) {
+      toast.error('Password must have at least one lowercase letter');
+      return;
+    }
+    
+    // Check for number
+    if (!/[0-9]/.test(password)) {
+      toast.error('Password must have at least one number');
+      return;
+    }
+    
+    // Check for special character
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      toast.error('Password must have at least one special character');
+      return;
+    }
+    
     if (password !== confirmPassword) {
       toast.error('Passwords do not match');
       return;
@@ -64,7 +89,7 @@ export default function Register() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="John Doe"
+                placeholder="Your Name"
                 className="input-field"
                 required
               />
@@ -109,7 +134,7 @@ export default function Register() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Minimum 9 characters"
+                  placeholder="Minimum 5 characters"
                   className="input-field pr-12"
                   required
                 />
