@@ -1,3 +1,5 @@
+// ...existing code...
+  // ...existing code...
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -12,6 +14,7 @@ import MyRequests from './pages/staff/MyRequests';
 import MyShifts from './pages/staff/MyShifts';
 import ManagerDashboard from './pages/manager/ManagerDashboard';
 import CreateShift from './pages/manager/CreateShift';
+import CreateManager from './pages/manager/CreateManager';
 import AllShifts from './pages/manager/AllShifts';
 import PendingRequests from './pages/manager/PendingRequests';
 import Assignments from './pages/manager/Assignments';
@@ -41,7 +44,9 @@ function AppRoutes() {
         <Route path="/staff/my-shifts" element={<ProtectedRoute allowedRoles={['STAFF']}><MyShifts /></ProtectedRoute>} />
 
         <Route path="/manager" element={<ProtectedRoute allowedRoles={['MANAGER']}><ManagerDashboard /></ProtectedRoute>} />
-        <Route path="/manager/create-shift" element={<ProtectedRoute allowedRoles={['MANAGER']}><CreateShift /></ProtectedRoute>} />
+  <Route path="/manager/create-shift" element={<ProtectedRoute allowedRoles={['MANAGER']}><CreateShift /></ProtectedRoute>} />
+  {/* Admin only: Create Manager */}
+  <Route path="/admin/create-manager" element={<CreateManager />} />
         <Route path="/manager/all-shifts" element={<ProtectedRoute allowedRoles={['MANAGER']}><AllShifts /></ProtectedRoute>} />
         <Route path="/manager/pending-requests" element={<ProtectedRoute allowedRoles={['MANAGER']}><PendingRequests /></ProtectedRoute>} />
         <Route path="/manager/assignments" element={<ProtectedRoute allowedRoles={['MANAGER']}><Assignments /></ProtectedRoute>} />
